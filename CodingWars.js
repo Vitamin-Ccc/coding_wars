@@ -11,31 +11,48 @@ const tacos = [taco, taco1, taco2]
 
 
 // write a function that takes an tacoOBJ and a id and returns a new object with name changed to "changed"
-const findObject = (arr, id) => {
-  // find is like filter, but it only returns 1 thing
-  return arr.find((thing) => thing.id === id);
+const updateTacoName = (name, id) => {
+  let new_arry = tacos.map((taco) => {
+    if (taco.id !== id) {
+      return taco;
+    }
+    return { ...taco, name: name };
+  });
+
+  return new_arry;
+};
+const updateName = updateTacoName("Changed", 1);
+console.log("Updated Name: ", updateName);
+
+
+// write a function that takes an tacoOBJ and return some formatted html (will be a string technically)
+const formattedTaco = () => {
+  return tacos.map((taco) => {
+    return `<p>${taco.name} taco is ${taco.about}</p>`;
+  });
 };
 
-
-// write a function that takes an tacoOBJ and return some
-
-// formatted html (will be a string technically)
+const html = formattedTaco();
+console.log(html);
 
 
+// write a function that takes an tacoOBJ and return formatted price with .00 
+const formattedPrice = (taco) => {
+  let newPrice = taco.price.toFixed(2);
+  return {...taco, price: newPrice}
+};
 
-// write a function that takes an tacoOBJ and return formatted price with
-
-// .00 
-
+console.log(formattedPrice(taco));
+console.log(formattedPrice(taco1));
+console.log(formattedPrice(taco2));
 
 
 // create a new array where all of the prices is formatted with .00
+// use .map (taco)
 
 
 
-// write a function that takes an array and logs each item in the array
-
-// hint forEach
+// write a function that takes an array and logs each item in the array hint forEach
 
 
 
@@ -70,9 +87,3 @@ const findObject = (arr, id) => {
 // Create (add a taco) 
 
 
-
-// bonus use reduce to return the sum of prices in tacos array
-
-// bonus do in rails
-
-// bonus create you own
