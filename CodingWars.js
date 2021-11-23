@@ -21,8 +21,8 @@ const updateTacoName = (name, id) => {
 
   return new_arry;
 };
-const updateName = updateTacoName("Changed", 1);
-console.log("Updated Name: ", updateName);
+const updateName = updateTacoName("Changed", 3);
+console.log(updateName);
 
 
 // 2) write a function that takes an tacoOBJ and return some formatted html (will be a string technically)
@@ -78,12 +78,27 @@ console.log(findTaco(tacos, 1))
 
 
 // 7) return a new array with all prices greater than 19 hint use forEach
+const greaterPrice = () => {
+  priceArr = [];
+  tacos.forEach((taco) => {
+    if(taco.price > 19) {
+      priceArr.push(taco.price);
+    };
+  });
+  return priceArr;
+};
+
+console.log(greaterPrice(tacos))
 
 
+// 8) return a new array with a 'about' key where it is a combo of name price and about use .map
+const aboutKey = () => {
+  return tacos.map((taco) => {
+    return { ...taco, about: `${taco.name} is $${taco.price} and it's ${taco.about}` };
+  });
+};
 
-// 8) return a new array with a 'about' key where it is a combo of name price and about
-
-
+console.log(aboutKey());
 
 
 ///CRUD
@@ -93,12 +108,50 @@ console.log(findTaco(tacos, 1))
 
 
 
-// READ (array of obj to array of html) 
+// 9) READ (array of obj to array of html)
+const tacoRead = () => {
+  return tacos.map((taco) => {
+    return `<p>${taco.name} taco is $${taco.price} and it's ${taco.about}</p>`;
+  });
+};
 
-// Update (update a taco) 
+console.log(tacoRead(tacos));
 
-// Remove (delete a taco) 
 
-// Create (add a taco) 
+// 10) Update (update a taco)
+const updateTacoPrice = (price, id) => {
+  let updatedPrice = tacos.map((taco) => {
+    if (taco.id !== id) {
+      return taco;
+    }
+    // do match
+    return { ...taco, price: price };
+  });
 
+  return updatedPrice;
+};
+
+console.log(updateTacoPrice(12, 1))
+
+
+// 11) Remove (delete a taco) 
+const removeTaco = (id) => {
+  return tacos.filter((t) => t.id !== id);
+};
+let filteredTacos = removeTaco(2);
+console.log(filteredTacos);
+
+
+// 12) Create (add a taco) 
+const addTaco = (taco) => {
+  return [...tacos, taco];
+};
+
+let newTaco = addTaco({
+  id: 4,
+  name: "Beef",
+  price: 25,
+  about: "Delicious",
+});
+console.log(newTaco);
 
